@@ -10,12 +10,12 @@ int in1 = 6;                   // motor 1, 1st pin
 int in2 = 7;                   // motor 1, 2nd pin
 int in3 = 8;                   // motor 2, 1st pin
 int in4 = 9;                   // motor 2, 2nd pin
-//int motorDireito = 2;               // motor 1, PWM pin to speed control
-//int motorEsquerdo = 5;              // motor 2, PWM pin to speed control
-//int Velocidade1 = 180;          // MotorEsquerdo
-//int Velocidade2 = 140;          // MotorDireito
-int distLimite = 50;           // distancia do robo em centimetors
-int tempoGiro = 50;            //tempo em milisegundos que a roda gira para virar o carrinho
+int motorDireito = 11;               // Motor esquerdo , PWM pin to speed control
+int motorEsquerdo = 5;              // Motor direito , PWM pin to speed control
+int velocidade1 = 150;          // Motor Esquerdo Velocidade
+int velocidade2 = 10;          // Motor Direito Velocidade
+int distLimite = 40;           // distancia do robo em centimetors
+int tempoGiro = 200;            //tempo em milisegundos que a roda gira para virar o carrinho
 
 int pinR = 3;   //receptor do ultrasonico
 int pinE = 4;   //emissor do ultrasonico
@@ -35,8 +35,8 @@ Ultrasonic ultrasonic(pinE, pinR);
 void setup(){
   Serial.begin(9600);          // serial communication initialization, just for debug
   myservo.attach(13);          // attach servo motor to pin 13
-//  pinMode(motorDireito, OUTPUT);    // motor pins definition
-//  pinMode(motorEsquerdo, OUTPUT);
+  pinMode(motorDireito, OUTPUT);    // motor pins definition
+  pinMode(motorEsquerdo, OUTPUT);
   pinMode(in1, OUTPUT);  // inicializa o pino 6 como saida
   pinMode(in2, OUTPUT);  // inicializa o pino 7 como saida
   pinMode(in3, OUTPUT);  // inicializa o pino 8 como saida
@@ -66,9 +66,9 @@ void andar(){
 
 // forward
 void paraFrente(){                   
-  Serial.println("andando para frente");               
-//  analogWrite(motorEsquerdo, Velocidade1); 
-//  analogWrite(motorDireito, Velocidade2);
+  Serial.println("andando para frente");   
+  analogWrite(motorEsquerdo, 100); 
+  analogWrite(motorDireito, 100);
   //Roda direita
   digitalWrite(in1, LOW);          
   digitalWrite(in2, HIGH);
